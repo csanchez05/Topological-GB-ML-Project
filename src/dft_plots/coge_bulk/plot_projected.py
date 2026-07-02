@@ -1,12 +1,25 @@
 from pathlib import Path
+
+# Compatibility shim: pyvista >= 0.45 renamed the public NORMALS constant to the
+# private _NORMALS, which pyprocar 6.x still imports at package init (for its 3D
+# Fermi plotting, unused here). Restore the alias before importing pyprocar.
+import pyvista.core.utilities as _pv_util
+from pyvista.core.utilities.helpers import _NORMALS as _pv_normals
+if not hasattr(_pv_util, "NORMALS"):
+    _pv_util.NORMALS = _pv_normals
+
 import pyprocar
 from pymatgen.io.vasp.outputs import Vasprun
 
 DATA = Path("/home/calvi/Research_Group/ML_Interface_Project/data/dft_calculations/CoGe/bulk")
 BS = str(DATA / "bandstructure")
+output_dir = Path("/home/calvi/Research_Group/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
+output_dir.mkdir(parents=True, exist_ok=True)
 
+# efermi lives inside the <dos> block of vasprun.xml, so parse_dos must be True
+# or pymatgen returns efermi=None and the bands are not shifted to E_F.
 efermi = Vasprun(str(DATA / "scf" / "vasprun.xml"),
-                 parse_dos=False, parse_eigen=False,
+                 parse_dos=True, parse_eigen=False,
                  parse_potcar_file=False).efermi
 
 projections = [
@@ -24,6 +37,6 @@ for label, atoms, orbitals in projections:
         fermi=efermi, atoms=atoms, orbitals=orbitals,
         cmap="jet", elimit=[-3, 3],
         title=label.replace("_", " "),
-        savefig=f"proj_{label}.png", show=False,
+        savefig=str(output_dir / f"proj_{label}.png"), show=False,
     )
-    print("wrote", f"proj_{label}.png")
+    print("wrote", output_dir / f"proj_{label}.png")

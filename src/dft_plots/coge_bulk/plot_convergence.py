@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 
 DATA = Path("/home/calvi/Research_Group/ML_Interface_Project/data/dft_calculations/CoGe/bulk")
 CONV = DATA / "convergence"
+output_dir = Path("/home/calvi/Research_Group/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
+output_dir.mkdir(parents=True, exist_ok=True)
 
 for fname, xcol, xlabel, title in [
     ("kpoint_convergence.csv", "kmesh",    "k-mesh (N×N×N)", "k-point convergence — CoGe SCF"),
@@ -25,6 +27,7 @@ for fname, xcol, xlabel, title in [
     ax.legend()
     fig.tight_layout()
 
-    out = fname.replace(".csv", ".png")
+    out = output_dir / fname.replace(".csv", ".png")
     fig.savefig(out, dpi=300)
+    plt.close(fig)
     print("wrote", out)
