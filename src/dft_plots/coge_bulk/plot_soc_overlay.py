@@ -31,6 +31,10 @@ bs_soc = BSVasprun(str(DATA / "SOC" / "bandstructure" / "vasprun.xml"),
 plotter = BSPlotter(bs_nosoc)   # non-SOC first  -> color C0
 plotter.add_bs(bs_soc)          # SOC overlaid   -> color C1
 ax = plotter.get_plot(ylim=(-2, 2))
+# BSPlotter hardcodes fontsize=30 for the axis labels, so override on the ax.
+ax.xaxis.label.set_size(16)
+ax.yaxis.label.set_size(16)
+ax.tick_params(labelsize=12)
 
 # BSPlotter labels each line by its internal band/spin index ("Band 0 up",
 # "Band 0 down", "Band 1 up"), which says nothing about SOC. Replace the legend

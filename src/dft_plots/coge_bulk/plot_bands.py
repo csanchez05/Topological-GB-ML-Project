@@ -31,6 +31,8 @@ pyprocar.bandsplot(
     mode="plain",
     fermi=efermi,
     elimit=[-3, 3],
+    colorbar_title_size=16,
+    colorbar_tick_labelsize=12,
     savefig=str(output_dir / "bands_nosoc.png"),
 )
 print("wrote", output_dir / "bands_nosoc.png")
