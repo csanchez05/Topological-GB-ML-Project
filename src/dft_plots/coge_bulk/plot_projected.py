@@ -1,8 +1,4 @@
 from pathlib import Path
-
-# Compatibility shim: pyvista >= 0.45 renamed the public NORMALS constant to the
-# private _NORMALS, which pyprocar 6.x still imports at package init (for its 3D
-# Fermi plotting, unused here). Restore the alias before importing pyprocar.
 import pyvista.core.utilities as _pv_util
 from pyvista.core.utilities.helpers import _NORMALS as _pv_normals
 if not hasattr(_pv_util, "NORMALS"):
@@ -11,9 +7,9 @@ if not hasattr(_pv_util, "NORMALS"):
 import pyprocar
 from pymatgen.io.vasp.outputs import Vasprun
 
-DATA = Path("/home/calvi/Research_Group/ML_Interface_Project/data/dft_calculations/CoGe/bulk")
+DATA = Path("/home/calvi/Research_Group/ML_Interface_Project/data/dft_calculations/CoGe/bulk/inverted")
 BS = str(DATA / "bandstructure")
-output_dir = Path("/home/calvi/Research_Group/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
+output_dir = Path("/home/calvi/Research_Group/ML_Interface_Project/plots/dft_plots/CoGe/bulk/inverted")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 # efermi lives inside the <dos> block of vasprun.xml, so parse_dos must be True

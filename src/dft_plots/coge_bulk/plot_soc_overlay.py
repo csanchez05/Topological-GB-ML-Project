@@ -42,8 +42,8 @@ ax.tick_params(labelsize=12)
 # were added (0 -> non-SOC, 1 -> SOC) using matplotlib's default color cycle.
 colors = plt.rcParams["axes.prop_cycle"].by_key()["color"]
 ax.legend(handles=[
-    Line2D([], [], color=colors[0], lw=2, label="non-SOC"),
-    Line2D([], [], color=colors[1], lw=2, label="SOC"),
+    Line2D([], [], color=colors[0], lw=1.25, label="non-SOC"),
+    Line2D([], [], color=colors[1], lw=1.25, label="SOC"),
 ], fontsize=16, loc="upper right")
 
 plt.savefig(output_dir / "bands_soc_vs_nosoc.png", dpi=800)
