@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from pymatgen.io.vasp.outputs import Vasprun
 from pymatgen.electronic_structure.core import OrbitalType
 
-DATA = Path("/home/calvi/Research_Group/ML_Interface_Project/data/dft_calculations/CoGe/bulk")
-output_dir = Path("/home/calvi/Research_Group/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
+DATA = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/calculations/CoGe_Bulk_Pristine")
+output_dir = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 # parse_dos=True is required -- efermi and the projected DOS both live in the

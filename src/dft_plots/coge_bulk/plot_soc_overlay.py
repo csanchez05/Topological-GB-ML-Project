@@ -4,8 +4,8 @@ from matplotlib.lines import Line2D
 from pymatgen.io.vasp.outputs import BSVasprun, Vasprun
 from pymatgen.electronic_structure.plotter import BSPlotter
 
-DATA = Path("/home/calvi/Research_Group/ML_Interface_Project/data/dft_calculations/CoGe/bulk")
-output_dir = Path("/home/calvi/Research_Group/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
+DATA = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/calculations/CoGe_Bulk_Pristine")
+output_dir = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 def scf_efermi(scf_dir):
@@ -14,8 +14,8 @@ def scf_efermi(scf_dir):
     return Vasprun(str(scf_dir / "vasprun.xml"), parse_dos=True,
                    parse_eigen=False, parse_potcar_file=False).efermi
 
-ef_nosoc = scf_efermi(DATA / "scf")
-ef_soc   = scf_efermi(DATA / "SOC" / "scf")
+ef_nosoc = scf_efermi(DATA / "SCF" / "production")
+ef_soc   = scf_efermi(DATA / "soc_SCF")
 print("E-fermi  non-SOC =", ef_nosoc, " SOC =", ef_soc)
 
 bs_nosoc = BSVasprun(str(DATA / "bandstructure" / "vasprun.xml"),
@@ -23,9 +23,9 @@ bs_nosoc = BSVasprun(str(DATA / "bandstructure" / "vasprun.xml"),
     kpoints_filename=str(DATA / "bandstructure" / "KPOINTS"),
     line_mode=True, efermi=ef_nosoc)
 
-bs_soc = BSVasprun(str(DATA / "SOC" / "bandstructure" / "vasprun.xml"),
+bs_soc = BSVasprun(str(DATA / "soc_bandstructure" / "vasprun.xml"),
                    parse_potcar_file=False).get_band_structure(
-    kpoints_filename=str(DATA / "SOC" / "bandstructure" / "KPOINTS"),
+    kpoints_filename=str(DATA / "soc_bandstructure" / "KPOINTS"),
     line_mode=True, efermi=ef_soc)
 
 plotter = BSPlotter(bs_nosoc)   # non-SOC first  -> color C0

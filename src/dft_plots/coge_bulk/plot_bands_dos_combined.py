@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from pymatgen.io.vasp.outputs import BSVasprun, Vasprun
 from pymatgen.electronic_structure.plotter import BSDOSPlotter
 
-DATA = Path("/home/calvi/Research_Group/ML_Interface_Project/data/dft_calculations/CoGe/bulk")
-output_dir = Path("/home/calvi/Research_Group/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
+DATA = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/calculations/CoGe_Bulk_Pristine")
+output_dir = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 # ---------------------------------------------------------------------------
@@ -16,7 +16,7 @@ def scf_efermi(scf_dir):
     return Vasprun(str(scf_dir / "vasprun.xml"), parse_dos=True,
                    parse_eigen=False, parse_potcar_file=False).efermi
 
-ef_bands = scf_efermi(DATA / "scf")
+ef_bands = scf_efermi(DATA / "SCF" / "production")
 print("bands E-fermi (from SCF) =", ef_bands)
 
 bs = BSVasprun(str(DATA / "bandstructure" / "vasprun.xml"),

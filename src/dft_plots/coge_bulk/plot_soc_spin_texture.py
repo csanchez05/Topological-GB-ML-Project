@@ -10,9 +10,9 @@ if not hasattr(_pv_util, "NORMALS"):
 import pyprocar
 from pymatgen.io.vasp.outputs import Vasprun
 
-DATA = Path("/home/calvi/Research_Group/ML_Interface_Project/data/dft_calculations/CoGe/bulk")
+DATA = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/calculations/CoGe_Bulk_Pristine/inverted")
 SOC_BS = str(DATA / "SOC" / "bandstructure")
-output_dir = Path("/home/calvi/Research_Group/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
+output_dir = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/plots/dft_plots/CoGe/bulk/inverted")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 # Fermi level from the SOC SCF -- same reasoning as the non-SOC case: the

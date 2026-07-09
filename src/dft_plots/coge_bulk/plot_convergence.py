@@ -2,9 +2,9 @@ from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
 
-DATA = Path("/home/calvi/Research_Group/ML_Interface_Project/data/dft_calculations/CoGe/bulk")
-CONV = DATA / "convergence"
-output_dir = Path("/home/calvi/Research_Group/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
+DATA = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/calculations/CoGe_Bulk_Pristine")
+CONV = DATA / "SCF" / "convergence"
+output_dir = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 for fname, xcol, xlabel, title in [

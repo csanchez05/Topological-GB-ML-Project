@@ -11,8 +11,8 @@ if not hasattr(_pv_util, "NORMALS"):
 import pyprocar
 from pymatgen.io.vasp.outputs import Vasprun
 
-DATA = Path("/home/calvi/Research_Group/ML_Interface_Project/data/dft_calculations/CoGe/bulk/inverted")
-output_dir = Path("/home/calvi/Research_Group/ML_Interface_Project/plots/dft_plots/CoGe/bulk/inverted")
+DATA = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/calculations/CoGe_Bulk_Pristine/inverted")
+output_dir = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/plots/dft_plots/CoGe/bulk/inverted")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 # Reliable Fermi level from the SCF run (NOT the band-structure run).
