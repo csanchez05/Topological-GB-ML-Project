@@ -10,15 +10,15 @@ if not hasattr(_pv_util, "NORMALS"):
 import pyprocar
 from pymatgen.io.vasp.outputs import Vasprun
 
-DATA = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/calculations/CoGe_Bulk_Pristine")
-SOC_BS = str(DATA / "soc_bandstructure")
-output_dir = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/plots/dft_plots/CoGe/bulk/regular/soc")
+DATA = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/calculations/CoGe_Bulk_Pristine/inverted")
+SOC_BS = str(DATA / "SOC" / "bandstructure")
+output_dir = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/plots/dft_plots/CoGe/bulk/inverted/soc")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 # Fermi level from the SOC SCF -- same reasoning as the non-SOC case: the
 # line-mode BS run's own Fermi level is unreliable. Use the SOC SCF's own
 # converged value, NOT the non-SOC one -- they differ slightly.
-efermi = Vasprun(str(DATA / "soc_SCF" / "vasprun.xml"),
+efermi = Vasprun(str(DATA / "SOC" / "scf" / "vasprun.xml"),
                  parse_dos=True, parse_eigen=False,
                  parse_potcar_file=False).efermi
 print("SOC SCF E-fermi =", efermi)
@@ -47,9 +47,9 @@ for spin_index, label in spin_components:
         fermi=efermi,
         spins=[spin_index],
         cmap="coolwarm",       # diverging colormap: spin-up vs spin-down direction
-        clim=[-1, 1],          # fix scale to match the inverted structure's plots
+        clim=[-1, 1],          # fix scale to match the non-inverted structure's plots
         elimit=[-2, 2],
-        title=f"CoGe SOC bands - spin {label}",
+        title=f"Inverted CoGe SOC bands - spin {label}",
         savefig=str(output_dir / f"soc_spin_{label}.png"),
         show=False,
     )

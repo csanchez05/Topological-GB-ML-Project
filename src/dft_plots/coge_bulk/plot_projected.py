@@ -9,7 +9,7 @@ from pymatgen.io.vasp.outputs import Vasprun
 
 DATA = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/calculations/CoGe_Bulk_Pristine/inverted")
 BS = str(DATA / "bandstructure")
-output_dir = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/plots/dft_plots/CoGe/bulk/inverted")
+output_dir = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/plots/dft_plots/CoGe/bulk/inverted/non_soc")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 # efermi lives inside the <dos> block of vasprun.xml, so parse_dos must be True

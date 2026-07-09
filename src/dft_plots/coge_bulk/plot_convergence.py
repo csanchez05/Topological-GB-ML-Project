@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 DATA = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/calculations/CoGe_Bulk_Pristine")
 CONV = DATA / "SCF" / "convergence"
-output_dir = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/plots/dft_plots/CoGe/bulk")
+output_dir = Path("/work_bgfs/c/calvinsanchez/USF/ML_Interface_Project/plots/dft_plots/CoGe/bulk/regular/convergence")
 output_dir.mkdir(parents=True, exist_ok=True)
 
 for fname, xcol, xlabel, title in [
