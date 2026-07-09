@@ -1,2 +1,9 @@
 # Ignore serialized datasets
 *.pkl
+
+# Personal Claude Code settings
+.claude/settings.local.json
+# Large research data / generated outputs — never commit
+/calculations/
+/data/
+/descriptors/
